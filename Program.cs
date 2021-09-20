@@ -6,12 +6,12 @@ namespace Obj_5._6
     {
         static void Main(string[] args)
         {
-            
+            EnterUser();
         }
 
-        static (string Name, string LastName, int Age, bool HasPet, string[] Pets, byte colors) EnterUser()
+        static (string Name, string LastName, int Age, bool HasPet, byte colors) EnterUser()
         {
-            (string Name, string LastName, int Age, bool HasPet) User;
+            (string Name, string LastName, int Age, bool HasPet, byte colors) User;
 
             Console.WriteLine("Введите свое имя");
             User.Name = Console.ReadLine();
@@ -20,7 +20,7 @@ namespace Obj_5._6
             User.LastName = Console.ReadLine();
 
             string age;
-            int intage;
+            int intage = 0;
 
             do
             {
@@ -33,19 +33,27 @@ namespace Obj_5._6
 
             Console.WriteLine("Есть у вас питомец?");
             string pet = Console.ReadLine();
-            string numpets;
+            int numpets;
             if (pet == "Да")
             {
                 User.HasPet = true;
 
                 Console.WriteLine("Сколько у вас питомцев?");
-                numpets = Console.ReadLine();
+                numpets = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Введите имена своих питомцев");
+                CreateArrayPets(numpets);
             }
             else
             {
                 User.HasPet = false;
             }
-            
+
+            Console.WriteLine("Введите количество любимых цветов цифрами");
+            User.colors = byte.Parse(Console.ReadLine());
+
+            Console.WriteLine("Введите наименования своих любимых цветов");
+            Favcolors(User.colors);
             return User;
 
         }
@@ -54,6 +62,12 @@ namespace Obj_5._6
         {
             var result = new string[num];
 
+            for (int i = 0; i < num; i++)
+            {
+                result[i] = Console.ReadLine();
+            }
+
+            return result;
         }
 
         static bool CheckNum(string number, out int corrnumber)
@@ -71,6 +85,17 @@ namespace Obj_5._6
                 corrnumber = 0;
                 return false;
             }
+        }
+
+        static string[] Favcolors(byte num)
+        {
+            var colors = new string[num];
+
+            for (int i = 0; i < num; i++)
+            {
+                colors[i] = Console.ReadLine();
+            }
+            return colors;
         }
     }
 }
