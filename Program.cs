@@ -6,7 +6,7 @@ namespace Obj_5._6
     {
         static void Main(string[] args)
         {
-            EnterUser();
+            Console.WriteLine(EnterUser());
         }
 
         static (string Name, string LastName, int Age, bool HasPet, byte colors) EnterUser()
@@ -20,7 +20,7 @@ namespace Obj_5._6
             User.LastName = Console.ReadLine();
 
             string age;
-            int intage = 0;
+            int intage;
 
             do
             {
@@ -31,7 +31,7 @@ namespace Obj_5._6
 
             User.Age = intage;
 
-            Console.WriteLine("Есть у вас питомец?");
+            Console.WriteLine("Есть у вас питомец? (да/нет)");
             string pet = Console.ReadLine();
             int numpets;
             if (pet == "Да")
@@ -74,17 +74,18 @@ namespace Obj_5._6
         {
             if (int.TryParse(number, out int intnum))
             {
-                if(intnum > 0)
+                if (intnum > 0)
                 {
                     corrnumber = intnum;
-                    return true;
+                    return false;
                 }
             }
-            else
             {
+                Console.WriteLine("Данные введены некорректно!");
                 corrnumber = 0;
-                return false;
+                return true;
             }
+
         }
 
         static string[] Favcolors(byte num)
@@ -97,5 +98,7 @@ namespace Obj_5._6
             }
             return colors;
         }
+
+        
     }
 }
